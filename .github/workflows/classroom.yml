@@ -1,0 +1,50 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Time Converter
+      id: time-converter
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Time Converter
+        setup-command: "./setup.sh"
+        command: "./tests/run-time.sh"
+        timeout: 10
+        max-score: 4
+    - name: Temperature Converter
+      id: temperature-converter
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Temperature Converter
+        setup-command: "./setup.sh"
+        command: "./tests/run-temp.sh"
+        timeout: 10
+        max-score: 4
+    - name: 'Distance Converter '
+      id: distance-converter
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Distance Converter '
+        setup-command: "./setup.sh"
+        command: "./tests/run-distance.sh"
+        timeout: 10
+        max-score: 4
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TIME-CONVERTER_RESULTS: "${{steps.time-converter.outputs.result}}"
+        TEMPERATURE-CONVERTER_RESULTS: "${{steps.temperature-converter.outputs.result}}"
+        DISTANCE-CONVERTER_RESULTS: "${{steps.distance-converter.outputs.result}}"
+      with:
+        runners: time-converter,temperature-converter,distance-converter
