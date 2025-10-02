@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.String;
 import java.text.DecimalFormat;
 
 public class TimeConverter {
@@ -7,6 +8,7 @@ public class TimeConverter {
         boolean running = true;
         double hrs, mins, secs, result;
         int choice;
+        String repeat;
         Scanner scan = new Scanner(System.in);
         DecimalFormat form = new DecimalFormat("#0.0");
         while (running)
@@ -18,10 +20,17 @@ public class TimeConverter {
             System.out.println("\nEnter secs:  ");
             secs = scan.nextInt();
 
-            System.out.println("\n\nCalculation:\n" + hrs + " hours * 3600 = " (hrs*3600) + " secs");
-            System.out.println("mins " +  mins * 60 + " = " (mins * 60) + " secs");
-            
+            System.out.println("\n\nCalculation:\n" + hrs + " hours * 3600 = " + (hrs*3600) + " secs");
+            System.out.println( mins + "mins * 60" + " = " + (mins * 60) + " secs");
+            System.out.println( secs + " secs");
+            System.out.println("Total: " + ((hrs*3600)+(mins*60)+secs));
 
+            System.out.println("\n\nRepeat? y/n:  ");
+            repeat = scan.next();
+            if (repeat.equals("y") != true)
+            {
+                running = false;
+            }
         }
     }
 }
