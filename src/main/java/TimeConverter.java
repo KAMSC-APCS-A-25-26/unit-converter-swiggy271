@@ -13,11 +13,11 @@ public class TimeConverter {
         DecimalFormat form = new DecimalFormat("#0.0");
         while (running)
         {
-            System.out.println("\n\nTime converter\n\nEnter hrs:  ");
+            System.out.println("\n\nTime converter\n\nEnter hours:  ");
             hrs = scan.nextInt();
-            System.out.println("\nEnter mins:  ");
+            System.out.println("\nEnter minutes:  ");
             mins = scan.nextInt();
-            System.out.println("\nEnter secs:  ");
+            System.out.println("\nEnter seconds:  ");
             secs = scan.nextInt();
 
             System.out.println("\n\nCalculation:\n" + hrs + " hours * 3600 = " + (hrs*3600) + " secs");
@@ -25,7 +25,7 @@ public class TimeConverter {
             System.out.println( secs + " secs");
             System.out.println("Total: " + ((hrs*3600)+(mins*60)+secs));
 
-            System.out.println("\n\nRepeat? y/n:  ");
+            System.out.println("\n\nDo you want to convert another time? (y/n): ");
             repeat = scan.next();
             if (repeat.equals("y") != true)
             {
