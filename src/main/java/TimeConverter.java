@@ -22,13 +22,14 @@ public class TimeConverter {
 
             System.out.println("\n\nCalculation:\n" + hrs + " hours * 3600 = " + (hrs*3600) + " secs");
             System.out.println( mins + "mins * 60" + " = " + (mins * 60) + " secs");
-            System.out.println( secs + " secs");
-            System.out.println("Total: " + ((hrs*3600)+(mins*60)+secs));
+            System.out.println( secs + " secs = " + secs);
+            System.out.println("Total second: " + ((hrs*3600)+(mins*60)+secs));
 
             System.out.println("\n\nDo you want to convert another time? (y/n): ");
             repeat = scan.next();
             if (repeat.equals("y") != true)
             {
+                System.out.println("Goodbye!");
                 running = false;
             }
         }
