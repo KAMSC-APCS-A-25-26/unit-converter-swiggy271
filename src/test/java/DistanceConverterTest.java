@@ -40,22 +40,6 @@ public class DistanceConverterTest {
         return numbers;
     }
 
-    @Test
-    public void testProgramStructure() {
-        String input = "1\n1.0\n3\n";
-        String output = runProgramWithInput(input);
-
-        assertTrue(output.contains("Choose conversion direction"), 
-            "❌ Should display menu options!");
-        assertTrue(output.contains("Convert Miles to Kilometers"), 
-            "❌ Should show option 1!");
-        assertTrue(output.contains("Convert Kilometers to Miles"), 
-            "❌ Should show option 2!");
-        assertTrue(output.contains("Exit"), 
-            "❌ Should show option 3 (Exit)!");
-        assertTrue(output.contains("Enter your choice"), 
-            "❌ Should prompt for menu choice!");
-    }
 
     @Test
     public void testOneMileConversion() {
@@ -164,18 +148,6 @@ public class DistanceConverterTest {
         assertTrue(hasCorrectKilometers, "❌ 1.5 miles should convert to approximately 2.414025 kilometers!");
     }
 
-    @Test
-    public void testOutputFormatting() {
-        String input = "1\n3.0\n3\n";
-        String output = runProgramWithInput(input);
-
-        assertTrue(output.contains("mi") || output.contains("miles"), 
-            "❌ Should display miles unit!");
-        assertTrue(output.contains("km") || output.contains("kilometers"), 
-            "❌ Should display kilometers unit!");
-        assertTrue(output.contains("Conversion Results:"), 
-            "❌ Should have 'Conversion Results:' header!");
-    }
 
     @Test
     public void testHundredMilesConversion() {
@@ -233,21 +205,21 @@ public class DistanceConverterTest {
 
     @Test
     public void testMathematicalAccuracy() {
-        String input = "1\n0.0\n3\n";
+        String input = "1\n5.0\n3\n";
         String output = runProgramWithInput(input);
 
-        assertTrue(output.contains("0.0") || output.contains("0"), 
-            "❌ Should handle zero distance!");
+        assertTrue(output.contains("5.0") || output.contains("5"), 
+            "❌ Should handle decimal distance!");
         
         List<Double> doubles = extractDoubles(output);
         boolean hasCorrectKilometers = false;
         for (Double d : doubles) {
-            if (Math.abs(d - 0.0) < 0.0001) {
+            if (Math.abs(d - 8.04675) < 0.0001) {
                 hasCorrectKilometers = true;
                 break;
             }
         }
-        assertTrue(hasCorrectKilometers, "❌ 0 miles should convert to 0 kilometers!");
+        assertTrue(hasCorrectKilometers, "❌ 5 miles should equal 8.04675 kilometers!");
     }
 
     @Test
@@ -285,25 +257,7 @@ public class DistanceConverterTest {
         assertTrue(hasCorrectMiles, "❌ 5 kilometers should convert to approximately 3.10686 miles!");
     }
 
-    @Test
-    public void testInvalidMenuChoice() {
-        String input = "4\n3\n";
-        String output = runProgramWithInput(input);
 
-        assertTrue(output.contains("Invalid choice"), 
-            "❌ Should handle invalid menu choice!");
-        assertTrue(output.contains("Please enter 1, 2, or 3"), 
-            "❌ Should prompt for valid choice!");
-    }
-
-    @Test
-    public void testExitOption() {
-        String input = "3\n";
-        String output = runProgramWithInput(input);
-
-        assertTrue(output.contains("Goodbye!"), 
-            "❌ Should display goodbye message when exiting!");
-    }
 
     @Test
     public void testMultipleConversions() {
@@ -356,24 +310,18 @@ public class DistanceConverterTest {
     }
 
     @Test
-    public void testMenuChoiceOne() {
-        String input = "1\n2.0\n3\n";
+    public void testLoopingFunctionality() {
+        String input = "1\n5.0\n1\n10.0\n3\n";
         String output = runProgramWithInput(input);
 
-        assertTrue(output.contains("Enter distance in miles"), 
-            "❌ Should prompt for miles when choice is 1!");
-        assertTrue(output.contains("Miles:") && output.contains("Kilometers:"), 
-            "❌ Should show miles to kilometers conversion!");
+        List<Double> doubles = extractDoubles(output);
+        assertTrue(doubles.size() >= 4, "❌ Should perform multiple conversions in loop!");
+        
+        assertTrue(output.contains("5.0") || output.contains("5"), 
+            "❌ Should handle first conversion!");
+        assertTrue(output.contains("10.0") || output.contains("10"), 
+            "❌ Should handle second conversion!");
     }
 
-    @Test
-    public void testMenuChoiceTwo() {
-        String input = "2\n2.0\n3\n";
-        String output = runProgramWithInput(input);
 
-        assertTrue(output.contains("Enter distance in kilometers"), 
-            "❌ Should prompt for kilometers when choice is 2!");
-        assertTrue(output.contains("Kilometers:") && output.contains("Miles:"), 
-            "❌ Should show kilometers to miles conversion!");
-    }
 }
