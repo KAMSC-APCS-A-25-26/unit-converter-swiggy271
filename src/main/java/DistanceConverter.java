@@ -11,24 +11,24 @@ public class DistanceConverter {
         DecimalFormat form = new DecimalFormat("0.00000");
         while (running)
         {
-            System.out.println("\n\nDistance Converter\n1. M ->km\n2. km -> M\n3. Exit");
+            System.out.print("\n\nDistance Converter\n1. M ->km\n2. km -> M\n3. Exit\n\nEnter choice:  ");
             choice = scan.nextInt();
 
             switch (choice)
             {
                 case 1:
-                    System.out.println("\n\nEnter # miles :  ");
+                    System.out.print("Enter distance in miles:  ");
                     input = scan.nextDouble();
                     result = input * 1.60935;
                     form.format(result);
-                    System.out.println("\nResult:  " + result);
+                    System.out.println("\nConversion results:\nMiles:  " + input + "\nKilometers:  " + result);
                     break;
                 case 2:
-                    System.out.println("\n\nEnter # kilometers :  ");
+                    System.out.println("Enter distance in kilometers:  ");
                     input = scan.nextDouble();
                     result = input / 1.60935;
                     form.format(result);
-                    System.out.println("\nResult:  " + result);
+                    System.out.println("\nConversion results:\nKilometers:  " + input + "\nMiles:  " + result);
                     break;
                 case 3:
                     System.out.println("\nGoodbye");
