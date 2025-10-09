@@ -20,10 +20,16 @@ public class TimeConverter {
             System.out.println("\nEnter seconds:  ");
             secs = scan.nextInt();
 
-            System.out.println("\n\nCalculation:\n" + hrs + " hours * 3600 = " + (hrs*3600) + " secs");
-            System.out.println( mins + "mins * 60" + " = " + (mins * 60) + " secs");
+            System.out.println("\n\nCalculation:\n" + hrs + " hours * 3600 = " + (hrs*3600) + " seconds");
+            System.out.println( mins + " mins * 60" + " = " + (mins * 60) + " seconds");
             System.out.println( secs + " seconds = " + secs + " Seconds");
-            System.out.println("Total second: " + ((hrs*3600)+(mins*60)+secs));
+            if (((hrs*3600)+(mins*60)+secs) == 1)
+            {
+                System.out.println("Total seconds: " + (int)((hrs * 3600) + (mins * 60) + secs) + " second");
+            }
+            else {
+                System.out.println("Total: " + ((hrs * 3600) + (mins * 60) + secs) + " seconds");
+            }
 
             System.out.println("\n\nDo you want to convert another time? (y/n): ");
             repeat = scan.next();
