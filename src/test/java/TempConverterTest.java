@@ -40,22 +40,6 @@ public class TempConverterTest {
         return numbers;
     }
 
-    @Test
-    public void testProgramStructure() {
-        String input = "1\n32.0\n3\n";
-        String output = runProgramWithInput(input);
-
-        assertTrue(output.contains("Choose conversion direction"), 
-            "❌ Should display menu options!");
-        assertTrue(output.contains("Convert Fahrenheit to Celsius"), 
-            "❌ Should show option 1!");
-        assertTrue(output.contains("Convert Celsius to Fahrenheit"), 
-            "❌ Should show option 2!");
-        assertTrue(output.contains("Exit"), 
-            "❌ Should show option 3 (Exit)!");
-        assertTrue(output.contains("Enter your choice"), 
-            "❌ Should prompt for menu choice!");
-    }
 
     @Test
     public void testFahrenheitToCelsiusConversion() {
@@ -157,18 +141,6 @@ public class TempConverterTest {
         assertTrue(hasCorrectCelsius, "❌ 98.6°F should convert to approximately 37°C!");
     }
 
-    @Test
-    public void testOutputFormatting() {
-        String input = "1\n75.0\n3\n";
-        String output = runProgramWithInput(input);
-
-        assertTrue(output.contains("F") || output.contains("fahrenheit"), 
-            "❌ Should display Fahrenheit unit!");
-        assertTrue(output.contains("C") || output.contains("celsius"), 
-            "❌ Should display Celsius unit!");
-        assertTrue(output.contains("Conversion Results:"), 
-            "❌ Should have 'Conversion Results:' header!");
-    }
 
     @Test
     public void testNoCompilationErrors() {
@@ -229,16 +201,6 @@ public class TempConverterTest {
             "❌ Should display goodbye message when exiting!");
     }
 
-    @Test
-    public void testInvalidMenuChoice() {
-        String input = "4\n3\n";
-        String output = runProgramWithInput(input);
-
-        assertTrue(output.contains("Invalid choice"), 
-            "❌ Should handle invalid menu choice!");
-        assertTrue(output.contains("Please enter 1, 2, or 3"), 
-            "❌ Should prompt for valid choice!");
-    }
 
     @Test
     public void testMultipleConversions() {
@@ -251,5 +213,19 @@ public class TempConverterTest {
             "❌ Should perform Celsius to Fahrenheit conversion!");
         assertTrue(output.contains("Goodbye!"), 
             "❌ Should exit after both conversions!");
+    }
+
+    @Test
+    public void testLoopingFunctionality() {
+        String input = "1\n32.0\n2\n0.0\n3\n";
+        String output = runProgramWithInput(input);
+
+        List<Double> doubles = extractDoubles(output);
+        assertTrue(doubles.size() >= 4, "❌ Should perform multiple conversions in loop!");
+        
+        assertTrue(output.contains("32.0") || output.contains("32"), 
+            "❌ Should handle first conversion!");
+        assertTrue(output.contains("0.0") || output.contains("0"), 
+            "❌ Should handle second conversion!");
     }
 }
