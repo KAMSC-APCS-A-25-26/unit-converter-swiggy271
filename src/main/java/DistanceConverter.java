@@ -11,27 +11,27 @@ public class DistanceConverter {
         DecimalFormat form = new DecimalFormat("0.00000");
         while (running)
         {
-            System.out.print("\n\nDistance Converter\n1. M ->km\n2. km -> M\n3. Exit\n\nEnter choice:  ");
+            System.out.print("\n\nChoose conversion direction:\n1. Convert Miles to Kilometers\n2. Convert Kilometers to Miles\n3. Exit\n\nEnter your choice (1, 2, or 3): ");
             choice = scan.nextInt();
 
             switch (choice)
             {
                 case 1:
-                    System.out.print("Enter distance in miles:  ");
+                    System.out.print("\nEnter distance in miles: ");
                     input = scan.nextDouble();
                     result = input * 1.60935;
                     form.format(result);
-                    System.out.println("\nConversion results:\nMiles:  " + input + "\nKilometers:  " + result);
+                    System.out.println("\nConversion results:\nMiles: " + input + "\nKilometers: " + result);
                     break;
                 case 2:
-                    System.out.println("Enter distance in kilometers:  ");
+                    System.out.println("Enter distance in kilometers: ");
                     input = scan.nextDouble();
                     result = input / 1.60935;
                     form.format(result);
-                    System.out.println("\nConversion results:\nKilometers:  " + input + "\nMiles:  " + result);
+                    System.out.println("\nConversion results:\nKilometers: " + input + "\nMiles: " + result);
                     break;
                 case 3:
-                    System.out.println("\nGoodbye");
+                    System.out.println("\nGoodbye!");
                     running = false;
                     break;
                 default:
